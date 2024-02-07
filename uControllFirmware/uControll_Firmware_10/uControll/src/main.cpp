@@ -1,18 +1,47 @@
 #include <Arduino.h>
+#include <./menu/Menu.h>
+#include <LiquidCrystal_I2C.h>
 
-// put function declarations here:
-int myFunction(int, int);
+//create display object
+LiquidCrystal_I2C lcd(0x27,16, 2);
+Menu mainMenu(lcd);
+
+bool aNext;
+bool aBack;
+static const uint8_t BACK = 2;
+static const uint8_t NEXT = 4;
+
+void Events(){
+  mainMenu.NavigateMenu(aBack, aNext);
+
+  if(aNext){
+    Serial.printf("Next");
+  }
+if(aBack){
+    Serial.printf("Back");
+  }
+};
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
-}
+
+Serial.begin(9600);
+
+pinMode(BACK,INPUT_PULLUP);
+pinMode(NEXT , INPUT_PULLUP);
+
+lcd.init();
+lcd.backlight();
+
+
+
+//Start Logic
+
+mainMenu.Initialize();
+};
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
-}
+    aNext = !digitalRead(NEXT);
+    //aBack = !digitalRead(BACK);
+    Events();
+    delay(100);
+};
