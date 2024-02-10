@@ -12,6 +12,7 @@ class subMenu {
     private:
         int ItemIndex;
         string title;
+        string tag;
         std::vector<std::string> itens;
     public:
      subMenu();
@@ -22,6 +23,10 @@ class subMenu {
      void NavigateSubMenuItens(bool aBack, bool aNext);
      int getItemIndex();
      int getTotalItens();
+     string getItem();
+     string getTag();
+     void setTag(string aTag);
+     
 };
 
 #endif

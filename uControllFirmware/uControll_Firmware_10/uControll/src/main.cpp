@@ -8,8 +8,8 @@ Menu mainMenu(lcd);
 
 bool aNext;
 bool aBack;
-static const uint8_t BACK = 2;
-static const uint8_t NEXT = 4;
+static const uint8_t BACK = 4;
+static const uint8_t NEXT = 5;
 
 void Events(){
   mainMenu.NavigateMenu(aBack, aNext);
@@ -41,7 +41,7 @@ mainMenu.Initialize();
 
 void loop() {
     aNext = !digitalRead(NEXT);
-    //aBack = !digitalRead(BACK);
+    aBack = !digitalRead(BACK);
     Events();
     delay(100);
 };

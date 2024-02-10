@@ -1,9 +1,10 @@
 #include "Menu.h"
-#include "./subMenu/subMenu.h"
+#include "../entities/subMenu/subMenu.h"
 
 
 Menu::Menu(LiquidCrystal_I2C& display): lcd(display){
   MenuIndex = 0;
+  factory = subMenuFactory();
 };
 
 void Menu::PrintInDisplay(const char* atitle, const char* aItem){
@@ -20,15 +21,8 @@ void Menu::AddSubMenu(subMenu asubMenu){
 
 
 void Menu::Initialize(){
-    //create  first menu
-   subMenu initialMenu;
 
-    initialMenu.setTitle("-> connection");
-    initialMenu.addItem("Radio.F");
-    initialMenu.addItem("Bluetooth");
-    initialMenu.addItem("WebServer");
-
-    this->AddSubMenu(initialMenu);  
+    this->AddSubMenu(factory.Initial());  
 
     this->Render();
 

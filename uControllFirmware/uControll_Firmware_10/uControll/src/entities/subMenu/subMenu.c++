@@ -3,6 +3,7 @@
 subMenu::subMenu(){
     title = "";
     ItemIndex = 0;
+    tag = "";
 
 };
 
@@ -28,19 +29,23 @@ int subMenu::getTotalItens(){
 void subMenu::NavigateSubMenuItens(bool aBack, bool aNext){
     if(aBack && ItemIndex > 0){
         //Infinte menu navigation
+
         if(ItemIndex == 0 ){
             ItemIndex = itens.size() - 1 ;
             return;
         }
+
         ItemIndex --;
     }
 
     if(aNext && ItemIndex < itens.size()){
         //Infinte menu navigation
+
         if(ItemIndex == itens.size() - 1 ){
             ItemIndex = 0;
             return;
         }
+
         ItemIndex++;
 
     }
@@ -49,4 +54,16 @@ void subMenu::NavigateSubMenuItens(bool aBack, bool aNext){
 
 int subMenu::getItemIndex(){
     return this->ItemIndex;
+};
+
+string subMenu::getItem(){
+    return itens[ItemIndex];
+};
+
+string subMenu::getTag(){
+    return tag;
+};
+
+void subMenu::setTag(string aTag){
+    tag = aTag;
 };
