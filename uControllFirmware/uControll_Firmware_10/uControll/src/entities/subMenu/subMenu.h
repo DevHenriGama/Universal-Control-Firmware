@@ -5,6 +5,8 @@
 #include <vector>
 #include <iostream>
 
+#include "../../entities/menuItem/menuItem.h"
+
 using namespace std;
 
 class subMenu {
@@ -12,20 +14,17 @@ class subMenu {
     private:
         int ItemIndex;
         string title;
-        string tag;
-        std::vector<std::string> itens;
+        std::vector<MenuItem> itens;
     public:
      subMenu();
      void setTitle(string aTitle);
      string getTitle();
-     void addItem(string aItem);
-     std::vector<std::string> getItens();
+     void addItem(string aItemName, subMenu aNextMenu);
+     std::vector<MenuItem> getItens();
      void NavigateSubMenuItens(bool aBack, bool aNext);
      int getItemIndex();
      int getTotalItens();
-     string getItem();
-     string getTag();
-     void setTag(string aTag);
+     MenuItem getItem();
      
 };
 

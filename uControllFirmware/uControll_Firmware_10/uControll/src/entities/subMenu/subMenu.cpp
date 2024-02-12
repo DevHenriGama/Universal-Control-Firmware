@@ -1,10 +1,10 @@
 #include "./subMenu.h"
+#include "../../entities/menuItem/menuItem.h"
+using namespace std;
 
 subMenu::subMenu(){
     title = "";
     ItemIndex = 0;
-    tag = "";
-
 };
 
 void subMenu::setTitle(string aTitle){
@@ -14,11 +14,16 @@ string subMenu::getTitle(){
     return title;    
 };
 
-void subMenu::addItem(string aItem){
-    itens.push_back(aItem);
+void subMenu::addItem(string aItemName, subMenu aNextMenu){
+    MenuItem Item;
+
+    Item.setItemName(aItemName);
+    Item.setNextMenu(aNextMenu);
+
+    itens.push_back(Item);
 };
 
-std::vector<std::string> subMenu::getItens(){
+std::vector<MenuItem> subMenu::getItens(){
     return itens;
 };
 
@@ -28,7 +33,7 @@ int subMenu::getTotalItens(){
 
 void subMenu::NavigateSubMenuItens(bool aBack, bool aNext){
     if(aBack && ItemIndex > 0){
-        //Infinte menu navigation
+    
 
         if(ItemIndex == 0 ){
             ItemIndex = itens.size() - 1 ;
@@ -39,7 +44,6 @@ void subMenu::NavigateSubMenuItens(bool aBack, bool aNext){
     }
 
     if(aNext && ItemIndex < itens.size()){
-        //Infinte menu navigation
 
         if(ItemIndex == itens.size() - 1 ){
             ItemIndex = 0;
@@ -56,14 +60,7 @@ int subMenu::getItemIndex(){
     return this->ItemIndex;
 };
 
-string subMenu::getItem(){
+MenuItem subMenu::getItem(){
     return itens[ItemIndex];
 };
 
-string subMenu::getTag(){
-    return tag;
-};
-
-void subMenu::setTag(string aTag){
-    tag = aTag;
-};

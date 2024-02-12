@@ -22,7 +22,6 @@ class Menu {
         void PrintInDisplay(const char* atitle, const char* aItem);
     public:
         Menu(LiquidCrystal_I2C& display);
-        void AddSubMenu(subMenu asubMenu);
         void NavigateMenu(bool aBack, bool aNext);
         void OperateMenu(bool aEnter, bool aLeave);
         void Initialize();

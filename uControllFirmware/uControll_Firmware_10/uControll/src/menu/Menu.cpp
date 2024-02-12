@@ -15,14 +15,9 @@ void Menu::PrintInDisplay(const char* atitle, const char* aItem){
     lcd.printstr(aItem);
 };
 
-void Menu::AddSubMenu(subMenu asubMenu){
-    menus.push_back(asubMenu);
-};
-
-
 void Menu::Initialize(){
 
-    this->AddSubMenu(factory.Initial());  
+    menus.push_back(factory.SelectConnection());
 
     this->Render();
 
@@ -30,7 +25,7 @@ void Menu::Initialize(){
 
 void Menu::Render(){
 
-    //prevents display updates
+    //prevents display refresh
     if(old_subMenu.getTitle() == menus[MenuIndex].getTitle() 
         && old_subMenu.getItemIndex() == menus[MenuIndex].getItemIndex()){
 
@@ -38,7 +33,7 @@ void Menu::Render(){
     }
 
     if(menus.size() == 0){
-       PrintInDisplay("Err","menu not initialized."); 
+       PrintInDisplay("Err","Initialize Menu"); 
        return;
     }
 
@@ -47,7 +42,7 @@ void Menu::Render(){
 
     if(menus[MenuIndex].getTotalItens() > 0){
         int index = menus[MenuIndex].getItemIndex();
-        myItem = menus[MenuIndex].getItens()[index].c_str();
+        myItem = menus[MenuIndex].getItens()[index].getItemName().c_str();
     }
 
     
@@ -67,13 +62,16 @@ void Menu::NavigateMenu(bool aBack, bool aNext){
 
 void Menu::OperateMenu(bool aEnter, bool aLeave){
     if(aLeave && MenuIndex > 0 ){  
+        menus.pop_back();
         MenuIndex--;
-        return;
     }
 
-    if(aEnter && MenuIndex < menus.size()){
-        //Se entrar no proximo menu vai para o gerenciador de menus
-        MenuIndex++;
+    if(aEnter && MenuIndex < menus.size() - 1){
+        
+        if(menus[MenuIndex].getItem().getNextMenu().getTitle() != ""){
+            menus.push_back(menus[MenuIndex].getItem().getNextMenu());
+            MenuIndex++;
+        }
     };
 
     this->Render();
