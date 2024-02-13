@@ -14,7 +14,7 @@ class Menu {
 
     private:
         int MenuIndex;
-        std::vector<subMenu> menus;
+        std::vector<subMenu*> menus;
         LiquidCrystal_I2C& lcd;
         subMenu old_subMenu;
         subMenuFactory factory;

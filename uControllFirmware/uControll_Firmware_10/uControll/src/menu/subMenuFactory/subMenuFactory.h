@@ -11,14 +11,14 @@ class subMenuFactory {
     public:
     subMenuFactory();
 
-    subMenu Initial();
-    subMenu SelectConnection();
-    subMenu Bluetooth();
-    subMenu RadioFrequence();
-    subMenu WebServer();
-    subMenu Navigator();
-    subMenu Settings();
-    subMenu ProfileControl();
-    subMenu debug();
+    subMenu* Initial();
+    subMenu* SelectConnection();
+    subMenu* Bluetooth();
+    subMenu* RadioFrequence();
+    subMenu* WebServer();
+    subMenu* Navigator();
+    subMenu* Settings();
+    subMenu* ProfileControl();
+    subMenu* debug();
     
 };

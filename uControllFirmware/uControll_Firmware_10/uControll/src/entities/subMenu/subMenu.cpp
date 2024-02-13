@@ -1,34 +1,36 @@
-#include "./subMenu.h"
-#include "../../entities/menuItem/menuItem.h"
+#include "subMenu.h"
+#include "../MenuItem/MenuItem.h"
+#include <string>
+
 using namespace std;
 
 subMenu::subMenu(){
-    title = "";
-    ItemIndex = 0;
+    this->title = "";
+    this->ItemIndex = 0;
 };
 
 void subMenu::setTitle(string aTitle){
-    title = aTitle;
+   this->title = aTitle;
 };
 string subMenu::getTitle(){
-    return title;    
+    return this->title;    
 };
 
-void subMenu::addItem(string aItemName, subMenu aNextMenu){
+void subMenu::addItem(string aItemName, subMenu* aNextMenu){
     MenuItem Item;
 
-    Item.setItemName(aItemName);
+   Item.setItemName(aItemName);
     Item.setNextMenu(aNextMenu);
 
-    itens.push_back(Item);
+    items.push_back(Item);
 };
 
 std::vector<MenuItem> subMenu::getItens(){
-    return itens;
+    return this->items;
 };
 
 int subMenu::getTotalItens(){
-    return itens.size();
+    return this->items.size();
 };
 
 void subMenu::NavigateSubMenuItens(bool aBack, bool aNext){
@@ -36,16 +38,16 @@ void subMenu::NavigateSubMenuItens(bool aBack, bool aNext){
     
 
         if(ItemIndex == 0 ){
-            ItemIndex = itens.size() - 1 ;
+            ItemIndex = items.size() - 1 ;
             return;
         }
 
         ItemIndex --;
     }
 
-    if(aNext && ItemIndex < itens.size()){
+    if(aNext && ItemIndex < items.size()){
 
-        if(ItemIndex == itens.size() - 1 ){
+        if(ItemIndex == items.size() - 1 ){
             ItemIndex = 0;
             return;
         }
@@ -61,6 +63,6 @@ int subMenu::getItemIndex(){
 };
 
 MenuItem subMenu::getItem(){
-    return itens[ItemIndex];
+    return this->items[ItemIndex];
 };
 
