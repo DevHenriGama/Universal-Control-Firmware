@@ -1,10 +1,10 @@
 #include "Menu.h"
 #include "../entities/subMenu/subMenu.h"
+#include <Arduino.h>
 
 
 Menu::Menu(LiquidCrystal_I2C& display): lcd(display){
   MenuIndex = 0;
- // menus = std::vector<subMenu*>();
 };
 
 void Menu::PrintInDisplay(const char* atitle, const char* aItem){
@@ -63,15 +63,16 @@ void Menu::NavigateMenu(bool aBack, bool aNext){
 
 
 void Menu::OperateMenu(bool aEnter, bool aLeave){
+
     if(aLeave && MenuIndex > 0 ){  
         menus.pop_back();
         MenuIndex--;
     }
 
-    if(aEnter && MenuIndex < menus.size() - 1){
+    if(aEnter){
         MenuItem currentItem = menus[MenuIndex]->getItem();
 
-        subMenu* nextSubMenu = currentItem.getNextMenu();
+        subMenu* nextSubMenu = currentItem.getNextMenu();        
 
         if(nextSubMenu != nullptr && !nextSubMenu->getTitle().empty()){
             menus.push_back(nextSubMenu);
