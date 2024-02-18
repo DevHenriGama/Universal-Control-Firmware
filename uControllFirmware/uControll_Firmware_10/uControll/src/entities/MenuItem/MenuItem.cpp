@@ -5,18 +5,32 @@
 
 using namespace std;
 
-MenuItem::MenuItem(){
+MenuItem::MenuItem()
+{
     itemName = "";
 };
-void MenuItem::setItemName(string aName){
+void MenuItem::setItemName(string aName)
+{
     itemName = aName;
 };
-string MenuItem::getItemName(){
+string MenuItem::getItemName()
+{
     return itemName;
 };
-void MenuItem::setNextMenu(subMenu* aNext){
+void MenuItem::setNextMenu(subMenu *aNext)
+{
     nextMenu = aNext;
 };
-subMenu* MenuItem::getNextMenu(){
+subMenu *MenuItem::getNextMenu()
+{
     return nextMenu;
-};  
+};
+
+void MenuItem::setDevice(Device aDevice)
+{
+    this->device = aDevice;
+};
+Device MenuItem::getDevice()
+{
+    return this->device;
+};

@@ -4,65 +4,85 @@
 
 using namespace std;
 
-subMenu::subMenu(){
+subMenu::subMenu()
+{
     this->title = "";
     this->ItemIndex = 0;
 };
 
-void subMenu::setTitle(string aTitle){
-   this->title = aTitle;
+void subMenu::setTitle(string aTitle)
+{
+    this->title = aTitle;
 };
-string subMenu::getTitle(){
-    return this->title;    
+string subMenu::getTitle()
+{
+    return this->title;
 };
 
-void subMenu::addItem(string aItemName, subMenu* aNextMenu){
+void subMenu::addItem(string aItemName, subMenu *aNextMenu)
+{
     MenuItem Item;
 
-   Item.setItemName(aItemName);
+    Item.setItemName(aItemName);
     Item.setNextMenu(aNextMenu);
 
     items.push_back(Item);
 };
 
-std::vector<MenuItem> subMenu::getItens(){
+void subMenu::addItem(string aItemName, subMenu *aNextMenu, Device aDevice)
+{
+    MenuItem Item;
+
+    Item.setItemName(aItemName);
+    Item.setNextMenu(aNextMenu);
+    Item.setDevice(aDevice);
+
+    items.push_back(Item);
+};
+
+std::vector<MenuItem> subMenu::getItens()
+{
     return this->items;
 };
 
-int subMenu::getTotalItens(){
+int subMenu::getTotalItens()
+{
     return this->items.size();
 };
 
-void subMenu::NavigateSubMenuItens(bool aBack, bool aNext){
-    if(aBack && ItemIndex > 0){
-    
+void subMenu::NavigateSubMenuItens(bool aBack, bool aNext)
+{
+    if (aBack && ItemIndex > 0)
+    {
 
-        if(ItemIndex == 0 ){
-            ItemIndex = items.size() - 1 ;
+        if (ItemIndex == 0)
+        {
+            ItemIndex = items.size() - 1;
             return;
         }
 
-        ItemIndex --;
+        ItemIndex--;
     }
 
-    if(aNext && ItemIndex < items.size()){
+    if (aNext && ItemIndex < items.size())
+    {
 
-        if(ItemIndex == items.size() - 1 ){
+        if (ItemIndex == items.size() - 1)
+        {
             ItemIndex = 0;
             return;
         }
 
         ItemIndex++;
-
     }
 };
 
-
-int subMenu::getItemIndex(){
+int subMenu::getItemIndex()
+{
     return this->ItemIndex;
 };
 
-MenuItem subMenu::getItem(){
+MenuItem subMenu::getItem()
+{
     return this->items[ItemIndex];
 };
-

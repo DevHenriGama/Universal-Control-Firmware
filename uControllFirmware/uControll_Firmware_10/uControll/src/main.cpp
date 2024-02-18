@@ -1,10 +1,13 @@
 #include <Arduino.h>
-#include <./menu/Menu.h>
 #include <LiquidCrystal_I2C.h>
+#include <WiFi.h>
 
-//create display object
-LiquidCrystal_I2C lcd(0x27,16, 2);
+#include "./menu/Menu.h"
+#include "connections/wifi/wifiConnection.h"
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
 Menu mainMenu(lcd);
+WifiConnection wifi;
 
 bool aNext;
 bool aBack;
@@ -15,40 +18,37 @@ static const uint8_t NEXT = 5;
 static const uint8_t ENTER = 27;
 static const uint8_t LEAVE = 14;
 
-void Events(){
+void Events()
+{
   mainMenu.NavigateMenu(aBack, aNext);
-  mainMenu.OperateMenu(aEnter,aLeave);
-
-//   if(aLeave){
-//     Serial.printf("Leave");
-//   }
-// if(aEnter){
-//     Serial.printf("Enter");
-//   }
+  mainMenu.OperateMenu(aEnter, aLeave);
 };
 
-void setup() {
+void setup()
+{
+  //Start display before all
+  lcd.init();
+  lcd.backlight();
 
-Serial.begin(9600);
+  //Start objects for operations 
+  Serial.begin(9600);
+  wifi.Initialize();
 
-pinMode(BACK,INPUT_PULLUP);
-pinMode(NEXT , INPUT_PULLUP);
-pinMode(ENTER , INPUT_PULLUP);
-pinMode(LEAVE , INPUT_PULLUP);
+  pinMode(BACK, INPUT_PULLUP);
+  pinMode(NEXT, INPUT_PULLUP);
+  pinMode(ENTER, INPUT_PULLUP);
+  pinMode(LEAVE, INPUT_PULLUP);
 
-lcd.init();
-lcd.backlight();
-//Start Logic
-
-mainMenu.Initialize();
+  mainMenu.Initialize();
 };
 
-void loop() {
-    aNext = !digitalRead(NEXT);
-    aBack = !digitalRead(BACK);
-    aEnter = !digitalRead(ENTER);
-    aLeave = !digitalRead(LEAVE);
+void loop()
+{
+  aNext = !digitalRead(NEXT);
+  aBack = !digitalRead(BACK);
+  aEnter = !digitalRead(ENTER);
+  aLeave = !digitalRead(LEAVE);
 
-    Events();
-    delay(100);
+  Events();
+  delay(100);
 };

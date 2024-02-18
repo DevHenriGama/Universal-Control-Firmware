@@ -14,7 +14,7 @@ subMenu* subMenuFactory::Bluetooth(){};
 subMenu* subMenuFactory::RadioFrequence(){
     subMenu* aMenu = new subMenu();
 
-    aMenu->setTitle("-> Radio. F");
+    aMenu->setTitle("<> Radio. F");
     aMenu->addItem("Margot",nullptr);
     aMenu->addItem("Nightmare",nullptr);
     aMenu->addItem("pDrone",nullptr);
@@ -22,9 +22,27 @@ subMenu* subMenuFactory::RadioFrequence(){
 
     return aMenu;
 };
-subMenu* subMenuFactory::WebServer(){};
-subMenu* subMenuFactory::Navigator(){};
-subMenu* subMenuFactory::Settings(){};
+subMenu* subMenuFactory::WebServer(){
+    subMenu* aMenu = new subMenu();
+
+    aMenu->setTitle("<> WebServer");
+    aMenu->addItem("aSunny",Navigator());
+    aMenu->addItem("Bunny",Navigator());
+
+    return aMenu;
+};
+subMenu* subMenuFactory::Navigator(){    
+    subMenu* aMenu = new subMenu();
+
+    aMenu->setTitle("<> Navigate");
+    aMenu->addItem("Start",nullptr);
+    aMenu->addItem("Settings",nullptr);
+    aMenu->addItem("Debug",nullptr);
+    return aMenu;
+};
+subMenu* subMenuFactory::Settings(){
+
+};
 subMenu* subMenuFactory::ProfileControl(){};
 subMenu* subMenuFactory::debug(){};
 
@@ -34,7 +52,7 @@ subMenu* subMenuFactory::SelectConnection(){
     aMenu->setTitle("-> connection");
     aMenu->addItem("Radio.F", RadioFrequence());
     aMenu->addItem("Bluetooth", nullptr);
-    aMenu->addItem("WebServer", nullptr);
+    aMenu->addItem("WebServer", WebServer());
     
     return aMenu;
 };

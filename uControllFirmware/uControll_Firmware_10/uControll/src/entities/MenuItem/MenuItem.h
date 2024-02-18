@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 
+#include "../device/Device.h"
+
 class subMenu;
 
 using namespace std;
@@ -11,6 +13,7 @@ using namespace std;
 class MenuItem {
 
     private:
+        Device device;
         string itemName ;
         subMenu* nextMenu;
     public:
@@ -18,7 +21,9 @@ class MenuItem {
         void setItemName(string aName);
         string getItemName();
         void setNextMenu(subMenu* aNext);
-        subMenu* getNextMenu();        
+        subMenu* getNextMenu();  
+        void setDevice(Device aDevice);
+        Device getDevice();
 };
 
 #endif
