@@ -14,12 +14,12 @@ static const uint8_t NEXT = 5;
 void Events(){
   mainMenu.NavigateMenu(aBack, aNext);
 
-  if(aNext){
-    Serial.printf("Next");
-  }
-if(aBack){
-    Serial.printf("Back");
-  }
+//   if(aNext){
+//     Serial.printf("Next");
+//   }
+// if(aBack){
+//     Serial.printf("Back");
+//   }
 };
 
 void setup() {

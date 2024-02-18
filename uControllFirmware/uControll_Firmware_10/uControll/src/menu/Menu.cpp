@@ -39,8 +39,7 @@ void Menu::Render(){
     }
 
 
-
-    const char* myTitle = menus[MenuIndex]->getTitle().c_str();
+    string menuTitle = menus[MenuIndex]->getTitle();
     const char* myItem = "0 Itens";
 
     if(menus[MenuIndex]->getTotalItens() > 0){
@@ -49,7 +48,7 @@ void Menu::Render(){
     }
 
     
-    PrintInDisplay(myTitle,myItem);
+    PrintInDisplay(menuTitle.c_str(),myItem);
 
     old_subMenu = *menus[MenuIndex];
 };
