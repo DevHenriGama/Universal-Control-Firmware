@@ -4,7 +4,9 @@
 
 #include "../../connections/httpClient/httpClient.h"
 
-HttpClient client;
+#include "menus/webServer/webServer.h"
+
+HttpClient *client = new HttpClient();
 
 using namespace std;
 
@@ -30,19 +32,11 @@ subMenu *subMenuFactory::RadioFrequence()
 };
 subMenu *subMenuFactory::WebServer()
 {
-    subMenu *aMenu = new subMenu();
+    WebServerMenu menu(client,Navigator());
 
-    aMenu->setTitle("<> WebServer");
-
-    string payload = client.GET("https://api.agify.io/?name=meelad").c_str();
-
-    if (payload != "")
-    {
-        aMenu->addItem(payload, Navigator());
-        // aMenu->addItem("Bunny", Navigator());
-    }
-    return aMenu;
+    return menu.WebServer();
 };
+
 subMenu *subMenuFactory::Navigator()
 {
     subMenu *aMenu = new subMenu();
