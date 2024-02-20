@@ -5,6 +5,7 @@
 #include "../../connections/httpClient/httpClient.h"
 
 #include "menus/webServer/webServer.h"
+#include "menus/selectConnection/selectConnection.h"
 
 HttpClient *client = new HttpClient();
 
@@ -55,12 +56,8 @@ subMenu *subMenuFactory::debug(){};
 
 subMenu *subMenuFactory::SelectConnection()
 {
-    subMenu *aMenu = new subMenu();
+ SelectConnectionMenu menu(Bluetooth(), RadioFrequence(),WebServer());
 
-    aMenu->setTitle("-> connection");
-    aMenu->addItem("Radio.F", RadioFrequence());
-    aMenu->addItem("Bluetooth", nullptr);
-    aMenu->addItem("WebServer", WebServer());
+ return menu.SelectConnection();
 
-    return aMenu;
 };
