@@ -6,6 +6,8 @@
 
 #include "menus/webServer/webServer.h"
 #include "menus/selectConnection/selectConnection.h"
+#include "menus/radioFrequence/radioFrequence.h"
+#include "menus/navigator/navigator.h"
 
 HttpClient *client = new HttpClient();
 
@@ -18,18 +20,14 @@ subMenuFactory::subMenuFactory(){
 subMenu *subMenuFactory::Initial(){
 
 };
-subMenu *subMenuFactory::Bluetooth(){};
+subMenu *subMenuFactory::Bluetooth(){ 
+    return nullptr;
+};
 subMenu *subMenuFactory::RadioFrequence()
 {
-    subMenu *aMenu = new subMenu();
+ RadioFrequenceMenu menu(client, Navigator());
 
-    aMenu->setTitle("<> Radio. F");
-    aMenu->addItem("Margot", nullptr);
-    aMenu->addItem("Nightmare", nullptr);
-    aMenu->addItem("pDrone", nullptr);
-    aMenu->addItem("aVantTang", nullptr);
-
-    return aMenu;
+ return menu.RadioFrequence();
 };
 subMenu *subMenuFactory::WebServer()
 {
@@ -40,13 +38,9 @@ subMenu *subMenuFactory::WebServer()
 
 subMenu *subMenuFactory::Navigator()
 {
-    subMenu *aMenu = new subMenu();
+ NavigatorMenu menu(nullptr);
 
-    aMenu->setTitle("<> Navigate");
-    aMenu->addItem("Start", nullptr);
-    aMenu->addItem("Settings", nullptr);
-    aMenu->addItem("Debug", nullptr);
-    return aMenu;
+ return menu.Navigator();
 };
 subMenu *subMenuFactory::Settings(){
 
