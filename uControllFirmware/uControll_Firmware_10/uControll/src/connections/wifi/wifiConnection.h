@@ -11,6 +11,7 @@ private:
 public:
     WifiConnection();
     void Initialize();
+    WiFiClient getWiFi();
 };
 
 #endif

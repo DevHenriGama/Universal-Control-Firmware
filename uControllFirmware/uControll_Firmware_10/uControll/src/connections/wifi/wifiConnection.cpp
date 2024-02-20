@@ -19,3 +19,7 @@ void WifiConnection::Initialize()
 
     Serial.print("Connected");
 };
+
+WiFiClient WifiConnection::getWiFi(){
+    
+};
