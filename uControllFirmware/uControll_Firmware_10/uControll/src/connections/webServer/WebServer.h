@@ -1,11 +1,14 @@
 #ifndef WebServer_h
 #define WebServer_h
 
-class WebServer {
-    private:
+class WebServer
+{
+private:
+    void Routes();
 
-    public:
+public:
     WebServer();
+    void Start();
 };
 
 #endif

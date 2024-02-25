@@ -4,10 +4,12 @@
 
 #include "./menu/Menu.h"
 #include "connections/wifi/wifiConnection.h"
+#include "connections/webServer/WebServer.h"
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 Menu mainMenu(lcd);
 WifiConnection wifi;
+WebServer webserver;
 
 bool aNext;
 bool aBack;
@@ -33,6 +35,7 @@ void setup()
   //Start objects for operations 
   Serial.begin(9600);
   wifi.Initialize();
+  webserver.Start();
 
   pinMode(BACK, INPUT_PULLUP);
   pinMode(NEXT, INPUT_PULLUP);

@@ -8,7 +8,7 @@ subMenu *HTTPConnectionMenu::HTTPConnection()
 {
     subMenu *aMenu = new subMenu();
 
-    aMenu->setTitle("<> WebServer");
+    aMenu->setTitle("<> HTTPCon");
 
     string payload = client->GET("https://api.agify.io/?name=meelad").c_str();
 
