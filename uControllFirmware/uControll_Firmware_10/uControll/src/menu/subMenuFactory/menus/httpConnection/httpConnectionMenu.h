@@ -1,17 +1,17 @@
-#ifndef WebServer_h
-#define WebServer_h
+#ifndef HTTPConnection_h
+#define HTTPConnection_h
 
 #include "../../../../entities/subMenu/subMenu.h"
 #include "../../../../connections/httpClient/httpClient.h"
 
-class WebServerMenu
+class HTTPConnectionMenu
 {
     private:
       HttpClient* client;  
       subMenu* nextMenu;
     public:
-        WebServerMenu(HttpClient* aClient, subMenu* aNextMenu);
-        subMenu* WebServer();
+        HTTPConnectionMenu(HttpClient* aClient, subMenu* aNextMenu);
+        subMenu* HTTPConnection();
 };
 
 #endif

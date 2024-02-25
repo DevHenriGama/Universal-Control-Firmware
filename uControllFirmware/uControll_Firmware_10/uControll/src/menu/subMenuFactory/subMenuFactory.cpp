@@ -4,7 +4,7 @@
 
 #include "../../connections/httpClient/httpClient.h"
 
-#include "menus/webServer/webServer.h"
+#include "menus/httpConnection/httpConnectionMenu.h"
 #include "menus/selectConnection/selectConnection.h"
 #include "menus/radioFrequence/radioFrequence.h"
 #include "menus/navigator/navigator.h"
@@ -29,11 +29,11 @@ subMenu *subMenuFactory::RadioFrequence()
 
  return menu.RadioFrequence();
 };
-subMenu *subMenuFactory::WebServer()
+subMenu *subMenuFactory::HTTPConnection()
 {
-    WebServerMenu menu(client,Navigator());
+    HTTPConnectionMenu menu(client,Navigator());
 
-    return menu.WebServer();
+    return menu.HTTPConnection();
 };
 
 subMenu *subMenuFactory::Navigator()
@@ -50,7 +50,7 @@ subMenu *subMenuFactory::debug(){};
 
 subMenu *subMenuFactory::SelectConnection()
 {
- SelectConnectionMenu menu(Bluetooth(), RadioFrequence(),WebServer());
+ SelectConnectionMenu menu(Bluetooth(), RadioFrequence(),HTTPConnection());
 
  return menu.SelectConnection();
 

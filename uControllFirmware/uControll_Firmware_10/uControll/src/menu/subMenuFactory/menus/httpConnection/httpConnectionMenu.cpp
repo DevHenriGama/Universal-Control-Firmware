@@ -1,10 +1,10 @@
-#include "webServer.h"
+#include "httpConnectionMenu.h"
 
-WebServerMenu::WebServerMenu(HttpClient* aClient, subMenu* aNextMenu):client(aClient){
+HTTPConnectionMenu::HTTPConnectionMenu(HttpClient* aClient, subMenu* aNextMenu):client(aClient){
     this->nextMenu = aNextMenu;
 };
 
-subMenu *WebServerMenu::WebServer()
+subMenu *HTTPConnectionMenu::HTTPConnection()
 {
     subMenu *aMenu = new subMenu();
 

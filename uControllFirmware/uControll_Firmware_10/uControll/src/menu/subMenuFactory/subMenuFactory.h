@@ -15,7 +15,7 @@ class subMenuFactory {
     subMenu* SelectConnection();
     subMenu* Bluetooth();
     subMenu* RadioFrequence();
-    subMenu* WebServer();
+    subMenu* HTTPConnection();
     subMenu* Navigator();
     subMenu* Settings();
     subMenu* ProfileControl();
